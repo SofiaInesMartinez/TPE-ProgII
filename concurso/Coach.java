@@ -67,9 +67,9 @@ public class Coach {
 		ArrayList<String> listaIdiomas = new ArrayList<>();
 		for (Participante p : equipo) {
 			ArrayList<String> listaParticipante = p.getListaIdiomas();
-			for (String inst : listaParticipante) {
-				if (!listaIdiomas.contains(inst)) {
-					listaIdiomas.add(inst);
+			for (String idioma : listaParticipante) {
+				if (!listaIdiomas.contains(idioma)) {
+					listaIdiomas.add(idioma);
 				}
 			}
 		}
@@ -80,9 +80,9 @@ public class Coach {
 		ArrayList<String> listaGeneros = new ArrayList<>();
 		for (Participante p : equipo) {
 			ArrayList<String> listaParticipante = p.getListaGeneros();
-			for (String inst : listaParticipante) {
-				if (!listaGeneros.contains(inst)) {
-					listaGeneros.add(inst);
+			for (String genero : listaParticipante) {
+				if (!listaGeneros.contains(genero)) {
+					listaGeneros.add(genero);
 				}
 			}
 		}
