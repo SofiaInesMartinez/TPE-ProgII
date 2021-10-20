@@ -17,6 +17,21 @@ public class Participante {
 		this.idiomas = new ArrayList<>();
 		this.instrumentos = new ArrayList<>();
 	}
+	
+	public ArrayList<String> getListaInstrumentos() {
+		ArrayList<String> lista = new ArrayList<>(instrumentos);
+		return lista;
+	}
+	
+	public ArrayList<String> getListaIdiomas() {
+		ArrayList<String> lista = new ArrayList<>(idiomas);
+		return lista;
+	}
+
+	public ArrayList<String> getListaGeneros() {
+		ArrayList<String> lista = new ArrayList<>(generosPreferidos);
+		return lista;
+	}
 
 	public boolean getIdioma(String idioma) {
 		return idiomas.contains(idioma);
@@ -81,5 +96,7 @@ public class Participante {
 	public String toString() {
 		return "Participante [nombre=" + nombre + ", apellido=" + apellido + "]";
 	}
+
+
 
 }

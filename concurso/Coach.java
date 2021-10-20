@@ -1,4 +1,5 @@
 package concurso;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -49,26 +50,41 @@ public class Coach {
 		this.nombre = nombre;
 	}
 
-	public ArrayList<String> getListaInstrumentos() { 	//Falta implementar
+	public ArrayList<String> getListaInstrumentos() {
 		ArrayList<String> listaInstrumentos = new ArrayList<>();
 		for (Participante p : equipo) {
-
+			ArrayList<String> listaParticipante = p.getListaInstrumentos();
+			for (String inst : listaParticipante) {
+				if (!listaInstrumentos.contains(inst)) {
+					listaInstrumentos.add(inst);
+				}
+			}
 		}
 		return listaInstrumentos;
 	}
 
-	public ArrayList<String> getListaIdiomas() {		//Falta implementar
+	public ArrayList<String> getListaIdiomas() {
 		ArrayList<String> listaIdiomas = new ArrayList<>();
 		for (Participante p : equipo) {
-
+			ArrayList<String> listaParticipante = p.getListaIdiomas();
+			for (String inst : listaParticipante) {
+				if (!listaIdiomas.contains(inst)) {
+					listaIdiomas.add(inst);
+				}
+			}
 		}
 		return listaIdiomas;
 	}
 
-	public ArrayList<String> getListaGeneros() { 		//Falta implementar
+	public ArrayList<String> getListaGeneros() {
 		ArrayList<String> listaGeneros = new ArrayList<>();
 		for (Participante p : equipo) {
-
+			ArrayList<String> listaParticipante = p.getListaGeneros();
+			for (String inst : listaParticipante) {
+				if (!listaGeneros.contains(inst)) {
+					listaGeneros.add(inst);
+				}
+			}
 		}
 		Collections.sort(listaGeneros);
 		return listaGeneros;
