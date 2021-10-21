@@ -7,7 +7,7 @@ public class FiltroInstrumento implements Filtro{
 	
 	@Override
 	public boolean cumple(Participante p) {
-		return p.getInstrumento(instrumento);
+		return p.tocaInstrumento(instrumento);
 	}
 
 	public FiltroInstrumento(String instrumento) {

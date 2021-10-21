@@ -7,7 +7,7 @@ public class FiltroIdioma implements Filtro{
 	
 	@Override
 	public boolean cumple(Participante p) {
-		return p.getIdioma(idioma);
+		return p.hablaIdioma(idioma);
 	}
 
 	public FiltroIdioma(String idioma) {

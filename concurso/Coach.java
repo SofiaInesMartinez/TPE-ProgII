@@ -4,19 +4,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import concurso.filtros.Filtro;
+import concurso.listas.Lista;
 
 public class Coach {
 	private String nombre;
-	private Comportamiento comportamiento;
+	private Filtro comportamiento;
 	private ArrayList<Participante> equipo;
 
 	public Coach(String nombre) {
 		this.nombre = nombre;
 		this.equipo = new ArrayList<>();
-		this.comportamiento = new ComportamientoOK();
+		this.comportamiento = null;
 	}
+	
+	public Coach(String nombre, Filtro comportamiento) {
+		this(nombre);
+		this.equipo = new ArrayList<>();
+		this.comportamiento = comportamiento;
+	}
+	
 
-	public void setComportamiento(Comportamiento comportamiento) {
+	public void setComportamiento(Filtro comportamiento) {
 		this.comportamiento = comportamiento;
 	}
 
@@ -35,10 +43,13 @@ public class Coach {
 	}
 
 	public void addParticipante(Participante p) {
-		if (comportamiento.isParticipanteOK(p)) {
-			if (!equipo.contains(p)) {
+		if (!equipo.contains(p)) {
+			if (comportamiento != null) {
+				if (comportamiento.cumple(p)) {
+					equipo.add(p);
+				}
+			} else
 				equipo.add(p);
-			}
 		}
 	}
 
@@ -50,7 +61,7 @@ public class Coach {
 		this.nombre = nombre;
 	}
 
-	public ArrayList<String> getListaInstrumentos() {
+	public ArrayList<String> getListaInstrumentosSinRepetir() {
 		ArrayList<String> listaInstrumentos = new ArrayList<>();
 		for (Participante p : equipo) {
 			ArrayList<String> listaParticipante = p.getListaInstrumentos();
@@ -63,7 +74,7 @@ public class Coach {
 		return listaInstrumentos;
 	}
 
-	public ArrayList<String> getListaIdiomas() {
+	public ArrayList<String> getListaIdiomasSinRepetir() {
 		ArrayList<String> listaIdiomas = new ArrayList<>();
 		for (Participante p : equipo) {
 			ArrayList<String> listaParticipante = p.getListaIdiomas();
@@ -75,8 +86,24 @@ public class Coach {
 		}
 		return listaIdiomas;
 	}
+	
+	
+	public ArrayList<String> getListaSinRepetir(Lista l) { //Algo así se podría usar para no repetir las 3 funciones
+		ArrayList<String> listaSimple = new ArrayList<>();	//pero agrega 4 clases		
+		for (Participante p : equipo) {								
+			ArrayList<String> listaParticipante = l.getLista(p);
+			for (String item : listaParticipante) {						
+				if (!listaSimple.contains(item)) {
+					listaSimple.add(item);
+				}
+			}
+		}
+		return listaSimple;
+	}
+	
+	
 
-	public ArrayList<String> getListaGeneros() {
+	public ArrayList<String> getListaGenerosSinRepetir() {
 		ArrayList<String> listaGeneros = new ArrayList<>();
 		for (Participante p : equipo) {
 			ArrayList<String> listaParticipante = p.getListaGeneros();

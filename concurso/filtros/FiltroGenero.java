@@ -7,7 +7,7 @@ public class FiltroGenero implements Filtro{
 	
 	@Override
 	public boolean cumple(Participante p) {
-		return p.getGenero(genero);
+		return p.prefiereGenero(genero);
 	}
 
 	public FiltroGenero(String genero) {

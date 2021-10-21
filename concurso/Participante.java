@@ -1,5 +1,6 @@
 package concurso;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Participante {
 	private String nombre;
@@ -33,15 +34,15 @@ public class Participante {
 		return lista;
 	}
 
-	public boolean getIdioma(String idioma) {
+	public boolean hablaIdioma(String idioma) {
 		return idiomas.contains(idioma);
 	}
 
-	public boolean getGenero(String genero) {
+	public boolean prefiereGenero(String genero) {
 		return generosPreferidos.contains(genero);
 	}
 
-	public boolean getInstrumento(String instrumento) {
+	public boolean tocaInstrumento(String instrumento) {
 		return instrumentos.contains(instrumento);
 	}
 
@@ -88,9 +89,17 @@ public class Participante {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		return this.getNombre().equals(((Participante) o).getNombre());
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Participante other = (Participante) obj;
+		return Objects.equals(apellido, other.apellido) && Objects.equals(nombre, other.nombre);
 	}
+	
 
 	@Override
 	public String toString() {
