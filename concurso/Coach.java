@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import concurso.filtros.Filtro;
-import concurso.listas.Lista;
 
 public class Coach {
 	private String nombre;
@@ -87,21 +86,7 @@ public class Coach {
 		return listaIdiomas;
 	}
 	
-	
-	public ArrayList<String> getListaSinRepetir(Lista l) { //Algo así se podría usar para no repetir las 3 funciones
-		ArrayList<String> listaSimple = new ArrayList<>();	//pero agrega 4 clases		
-		for (Participante p : equipo) {								
-			ArrayList<String> listaParticipante = l.getLista(p);
-			for (String item : listaParticipante) {						
-				if (!listaSimple.contains(item)) {
-					listaSimple.add(item);
-				}
-			}
-		}
-		return listaSimple;
-	}
-	
-	
+
 
 	public ArrayList<String> getListaGenerosSinRepetir() {
 		ArrayList<String> listaGeneros = new ArrayList<>();
