@@ -2,23 +2,22 @@ package concurso;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Participante {
-	private String nombre;
-	private String apellido;
+public class Participante extends GrupoAbstracto{
 	private int edad;
 	private ArrayList<String> generosPreferidos;
 	private ArrayList<String> idiomas;
 	private ArrayList<String> instrumentos;
 
-	public Participante(String nombre, String apellido, int edad) {
-		this.nombre = nombre;
-		this.apellido = apellido;
+
+	public Participante(String nombre, int edad, ArrayList<String> generosPreferidos,
+			ArrayList<String> idiomas, ArrayList<String> instrumentos) {
+		super(nombre);
 		this.edad = edad;
-		this.generosPreferidos = new ArrayList<>();
-		this.idiomas = new ArrayList<>();
-		this.instrumentos = new ArrayList<>();
+		this.generosPreferidos = new ArrayList<>(generosPreferidos);
+		this.idiomas = new ArrayList<>(idiomas);
+		this.instrumentos = new ArrayList<>(instrumentos);
 	}
-	
+
 	public ArrayList<String> getListaInstrumentos() {
 		ArrayList<String> lista = new ArrayList<>(instrumentos);
 		return lista;
@@ -34,14 +33,17 @@ public class Participante {
 		return lista;
 	}
 
+	@Override
 	public boolean hablaIdioma(String idioma) {
 		return idiomas.contains(idioma);
 	}
 
+	@Override
 	public boolean prefiereGenero(String genero) {
 		return generosPreferidos.contains(genero);
 	}
 
+	@Override
 	public boolean tocaInstrumento(String instrumento) {
 		return instrumentos.contains(instrumento);
 	}
@@ -64,22 +66,6 @@ public class Participante {
 		}
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getApellido() {
-		return apellido;
-	}
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-
 	public int getEdad() {
 		return edad;
 	}
@@ -97,13 +83,19 @@ public class Participante {
 		if (getClass() != obj.getClass())
 			return false;
 		Participante other = (Participante) obj;
-		return Objects.equals(apellido, other.apellido) && Objects.equals(nombre, other.nombre);
+		return Objects.equals(nombre, other.nombre);
 	}
 	
 
 	@Override
 	public String toString() {
-		return "Participante [nombre=" + nombre + ", apellido=" + apellido + "]";
+		return "Participante [nombre=" + nombre + "]";
+	}
+
+	@Override
+	public int calcularIntegrantes() {
+		// TODO Auto-generated method stub
+		return 1;
 	}
 
 

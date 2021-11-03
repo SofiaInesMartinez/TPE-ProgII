@@ -1,6 +1,6 @@
 package concurso.filtros;
 
-import concurso.Participante;
+import concurso.GrupoAbstracto;
 
 public class FiltroNOT implements Filtro {
 	private Filtro f1;
@@ -10,7 +10,7 @@ public class FiltroNOT implements Filtro {
 	}
 
 	@Override
-	public boolean cumple(Participante p) {
+	public boolean cumple(GrupoAbstracto p) {
 		return !f1.cumple(p);
 	}
 

@@ -1,12 +1,12 @@
 package concurso.filtros;
 
-import concurso.Participante;
+import concurso.GrupoAbstracto;
 
 public class FiltroGenero implements Filtro{
 	private String genero;
 	
 	@Override
-	public boolean cumple(Participante p) {
+	public boolean cumple(GrupoAbstracto p) {
 		return p.prefiereGenero(genero);
 	}
 

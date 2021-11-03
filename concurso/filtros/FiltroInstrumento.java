@@ -1,12 +1,12 @@
 package concurso.filtros;
 
-import concurso.Participante;
+import concurso.GrupoAbstracto;
 
 public class FiltroInstrumento implements Filtro{
 	private String instrumento;
 	
 	@Override
-	public boolean cumple(Participante p) {
+	public boolean cumple(GrupoAbstracto p) {
 		return p.tocaInstrumento(instrumento);
 	}
 

@@ -1,12 +1,12 @@
 package concurso.filtros;
 
-import concurso.Participante;
+import concurso.GrupoAbstracto;
 
 public class FiltroEdadMin implements Filtro {
 	private int edadMin;
 
 	@Override
-	public boolean cumple(Participante p) {
+	public boolean cumple(GrupoAbstracto p) {
 		return p.getEdad() >= edadMin;
 	}
 

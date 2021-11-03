@@ -1,7 +1,7 @@
 package concurso.filtros;
 
-import concurso.Participante;
+import concurso.GrupoAbstracto;
 
 public interface Filtro {
-	public abstract boolean cumple(Participante p);
+	public abstract boolean cumple(GrupoAbstracto p);
 }
