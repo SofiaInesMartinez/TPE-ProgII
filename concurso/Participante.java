@@ -87,10 +87,6 @@ public class Participante extends GrupoAbstracto{
 	}
 	
 
-	@Override
-	public String toString() {
-		return "Participante [nombre=" + nombre + "]";
-	}
 
 	@Override
 	public int calcularIntegrantes() {

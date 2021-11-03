@@ -28,8 +28,7 @@ public class Grupo extends GrupoAbstracto {
 		}
 		return cantIntegrantes;
 	}
-	
-	
+
 	@Override
 	public boolean hablaIdioma(String idioma) {
 		return this.getListaIdiomas().contains(idioma);
@@ -46,18 +45,29 @@ public class Grupo extends GrupoAbstracto {
 	}
 
 	@Override
-	public ArrayList<String> getListaGeneros() {// Agrega union o interseccion
+	public ArrayList<String> getListaGeneros() {
 		ArrayList<String> generos = new ArrayList<>();
-		for (GrupoAbstracto p : integrantes) {
-			ArrayList<String> generosP = p.getListaGeneros();
-			for (String g : generosP) {
-				if (!generos.contains(g))
+		if (integrantes.size() != 0) {
+			ArrayList<String> generosPrimerParticipante = integrantes.get(0).getListaGeneros();
+			for (String g : generosPrimerParticipante) {
+				int contador = 1;
+				for (int i = 1; i < integrantes.size(); i++) {
+					ArrayList<String> generosP = integrantes.get(i).getListaGeneros();
+					if (generosP.contains(g))											
+						contador++;
+				}
+				if (contador == integrantes.size())
 					generos.add(g);
 			}
+
 		}
 		return generos;
 	}
 
+	
+	
+	
+	
 	@Override
 	public ArrayList<String> getListaIdiomas() {
 		ArrayList<String> idiomas = new ArrayList<>();

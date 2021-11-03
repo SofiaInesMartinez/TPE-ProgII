@@ -34,6 +34,13 @@ public abstract class GrupoAbstracto {
 		this.nombre = nombre;
 	}
 
+	@Override
+	public String toString() {
+		return "GrupoAbstracto [nombre=" + nombre + "]";
+	}
+
+
+
 	
 	
 }
