@@ -2,6 +2,8 @@ package concurso;
 
 import java.util.ArrayList;
 
+import concurso.filtros.Filtro;
+
 public abstract class GrupoAbstracto {
 	protected String nombre;
 
@@ -10,7 +12,6 @@ public abstract class GrupoAbstracto {
 	}
 	
 	public abstract int getEdad();
-	
 	
 	public abstract ArrayList<String> getListaGeneros();
 	
@@ -25,6 +26,16 @@ public abstract class GrupoAbstracto {
 	public abstract boolean tocaInstrumento(String instrumento); 	
 	
 	public abstract int calcularIntegrantes();
+	
+	public abstract ArrayList<GrupoAbstracto> buscar(Filtro f);
+	
+	public abstract int cantMiembrosInstrumentos(TemaMusical t);
+	
+	public abstract int cantInstrumentos();
+	
+	public abstract int cantGeneros();
+	
+	public abstract int cantIdiomas();
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -37,10 +48,6 @@ public abstract class GrupoAbstracto {
 	@Override
 	public String toString() {
 		return "GrupoAbstracto [nombre=" + nombre + "]";
-	}
-
-
-
-	
+	}	
 	
 }

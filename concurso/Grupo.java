@@ -2,6 +2,8 @@ package concurso;
 
 import java.util.ArrayList;
 
+import concurso.filtros.Filtro;
+
 public class Grupo extends GrupoAbstracto {
 	private ArrayList<GrupoAbstracto> integrantes;
 
@@ -92,6 +94,47 @@ public class Grupo extends GrupoAbstracto {
 			}
 		}
 		return instrumentos;
+	}
+
+	@Override
+	public ArrayList<GrupoAbstracto> buscar(Filtro criterio) {
+		ArrayList<GrupoAbstracto> participantesQueCumplen = new ArrayList<GrupoAbstracto>();
+		if (criterio.cumple(this)) {
+			participantesQueCumplen.add(this);
+			return participantesQueCumplen;
+		} else {
+			for (GrupoAbstracto p: integrantes)
+				participantesQueCumplen.addAll(p.buscar(criterio));
+		}
+		if (!participantesQueCumplen.isEmpty()) {
+			return participantesQueCumplen;
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public int cantMiembrosInstrumentos(TemaMusical t) {
+		int cant = 0;
+		for (GrupoAbstracto p: integrantes) {
+			cant += p.cantMiembrosInstrumentos(t);
+		}
+		return cant;
+	}
+
+	@Override
+	public int cantInstrumentos() {
+		return this.getListaInstrumentos().size();
+	}
+
+	@Override
+	public int cantGeneros() {
+		return this.getListaGeneros().size();
+	}
+
+	@Override
+	public int cantIdiomas() {
+		return this.getListaIdiomas().size();
 	}
 
 }

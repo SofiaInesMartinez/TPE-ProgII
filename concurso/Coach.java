@@ -2,6 +2,7 @@ package concurso;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import concurso.filtros.Filtro;
 
@@ -109,6 +110,12 @@ public class Coach {
 		}
 		return edad / equipo.size();
 
+	}
+	
+	public ArrayList<GrupoAbstracto> getMejoresEquipo(Comparator<GrupoAbstracto> criterio) {
+		ArrayList<GrupoAbstracto> listadoMejores = new ArrayList<>(equipo);
+		Collections.sort(listadoMejores, criterio);
+		return listadoMejores;
 	}
 
 }
