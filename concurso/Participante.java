@@ -1,18 +1,17 @@
 package concurso;
+
 import java.util.ArrayList;
-import java.util.Objects;
 
 import concurso.filtros.Filtro;
 
-public class Participante extends GrupoAbstracto{
+public class Participante extends GrupoAbstracto {
 	private int edad;
 	private ArrayList<String> generosPreferidos;
 	private ArrayList<String> idiomas;
 	private ArrayList<String> instrumentos;
 
-
-	public Participante(String nombre, int edad, ArrayList<String> generosPreferidos,
-			ArrayList<String> idiomas, ArrayList<String> instrumentos) {
+	public Participante(String nombre, int edad, ArrayList<String> generosPreferidos, ArrayList<String> idiomas,
+			ArrayList<String> instrumentos) {
 		super(nombre);
 		this.edad = edad;
 		this.generosPreferidos = new ArrayList<>(generosPreferidos);
@@ -24,7 +23,7 @@ public class Participante extends GrupoAbstracto{
 		ArrayList<String> lista = new ArrayList<>(instrumentos);
 		return lista;
 	}
-	
+
 	public ArrayList<String> getListaIdiomas() {
 		ArrayList<String> lista = new ArrayList<>(idiomas);
 		return lista;
@@ -77,20 +76,6 @@ public class Participante extends GrupoAbstracto{
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Participante other = (Participante) obj;
-		return Objects.equals(nombre, other.nombre);
-	}
-	
-
-
-	@Override
 	public int calcularIntegrantes() {
 		// TODO Auto-generated method stub
 		return 1;
@@ -100,7 +85,9 @@ public class Participante extends GrupoAbstracto{
 	public ArrayList<GrupoAbstracto> buscar(Filtro criterio) {
 		ArrayList<GrupoAbstracto> participante = new ArrayList<GrupoAbstracto>();
 		if (criterio.cumple(this)) {
-			participante.add(this);
+			Participante p = new Participante(this.getNombre(), this.getEdad(), this.getListaGeneros(),
+					this.getListaIdiomas(), this.getListaInstrumentos());
+			participante.add(p);
 		}
 		return participante;
 	}
@@ -108,7 +95,7 @@ public class Participante extends GrupoAbstracto{
 	@Override
 	public int cantMiembrosInstrumentos(TemaMusical t) {
 		ArrayList<String> instrumentos = t.getInstrumentosNecesarios();
-		for(String i: instrumentos) {
+		for (String i : instrumentos) {
 			if (this.tocaInstrumento(i)) {
 				return 1;
 			}
@@ -130,6 +117,5 @@ public class Participante extends GrupoAbstracto{
 	public int cantIdiomas() {
 		return this.getListaIdiomas().size();
 	}
-
 
 }

@@ -11,7 +11,6 @@ public class ComparadorInverso implements Comparator<GrupoAbstracto> {
 	
 
 	public ComparadorInverso(Comparator<GrupoAbstracto> c) {
-		super();
 		this.c = c;
 	}
 

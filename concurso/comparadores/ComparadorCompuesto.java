@@ -13,7 +13,6 @@ public class ComparadorCompuesto implements Comparator<GrupoAbstracto> {
 
 	public ComparadorCompuesto(Comparator<GrupoAbstracto> c1,
 			Comparator<GrupoAbstracto> c2) {
-		super();
 		this.c1 = c1;
 		this.c2 = c2;
 	}

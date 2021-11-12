@@ -1,12 +1,13 @@
 package concurso;
+
 import java.util.ArrayList;
 
 import concurso.filtros.Filtro;
 
 public class TemaMusical {
-	private String titulo;
-	private ArrayList<String> generos;
-	private ArrayList<String> instrumentosNecesarios;
+	protected String titulo;
+	protected ArrayList<String> generos;
+	protected ArrayList<String> instrumentosNecesarios;
 	protected Filtro criterio;
 
 	public TemaMusical(String titulo) {
@@ -28,9 +29,6 @@ public class TemaMusical {
 			generos.add(genero);
 		}
 	}
-	
-	
-	
 
 	public ArrayList<String> getInstrumentosNecesarios() {
 		return new ArrayList<String>(instrumentosNecesarios);
@@ -41,7 +39,7 @@ public class TemaMusical {
 			instrumentosNecesarios.add(instrumento);
 		}
 	}
-	
+
 	public boolean puedeSerInterpretado(GrupoAbstracto p) {
 		return criterio.cumple(p);
 	}

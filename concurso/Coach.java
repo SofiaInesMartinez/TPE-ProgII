@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import concurso.comparadores.ComparadorInverso;
 import concurso.filtros.Filtro;
 
 public class Coach {
@@ -16,23 +17,18 @@ public class Coach {
 		this.equipo = new ArrayList<>();
 		this.comportamiento = null;
 	}
-	
+
 	public Coach(String nombre, Filtro comportamiento) {
 		this(nombre);
 		this.equipo = new ArrayList<>();
 		this.comportamiento = comportamiento;
 	}
-	
 
 	public void setComportamiento(Filtro comportamiento) {
 		this.comportamiento = comportamiento;
 	}
 
-	public void setEquipo(ArrayList<GrupoAbstracto> equipo) {
-		this.equipo = equipo;
-	}
-
-	public ArrayList<GrupoAbstracto> getListaParticipantes(Filtro f) {
+	public ArrayList<GrupoAbstracto> getCopiaBusquedaParticipantes(Filtro f) {
 		ArrayList<GrupoAbstracto> participantesFiltrados = new ArrayList<>();
 		for (GrupoAbstracto p : equipo) {
 			if (f.cumple(p)) {
@@ -86,8 +82,6 @@ public class Coach {
 		}
 		return listaIdiomas;
 	}
-	
-
 
 	public ArrayList<String> getListaGenerosSinRepetir() {
 		ArrayList<String> listaGeneros = new ArrayList<>();
@@ -111,10 +105,11 @@ public class Coach {
 		return edad / equipo.size();
 
 	}
-	
+
 	public ArrayList<GrupoAbstracto> getMejoresEquipo(Comparator<GrupoAbstracto> criterio) {
+		Comparator<GrupoAbstracto> criterioDescendente = new ComparadorInverso(criterio);
 		ArrayList<GrupoAbstracto> listadoMejores = new ArrayList<>(equipo);
-		Collections.sort(listadoMejores, criterio);
+		Collections.sort(listadoMejores, criterioDescendente);
 		return listadoMejores;
 	}
 

@@ -7,9 +7,9 @@ import concurso.filtros.Filtro;
 public class Grupo extends GrupoAbstracto {
 	private ArrayList<GrupoAbstracto> integrantes;
 
-	public Grupo(String nombre, ArrayList<GrupoAbstracto> integrantes) {
+	public Grupo(String nombre) {
 		super(nombre);
-		this.integrantes = new ArrayList<>(integrantes);
+		this.integrantes = new ArrayList<>();
 
 	}
 
@@ -55,7 +55,7 @@ public class Grupo extends GrupoAbstracto {
 				int contador = 1;
 				for (int i = 1; i < integrantes.size(); i++) {
 					ArrayList<String> generosP = integrantes.get(i).getListaGeneros();
-					if (generosP.contains(g))											
+					if (generosP.contains(g))
 						contador++;
 				}
 				if (contador == integrantes.size())
@@ -66,10 +66,6 @@ public class Grupo extends GrupoAbstracto {
 		return generos;
 	}
 
-	
-	
-	
-	
 	@Override
 	public ArrayList<String> getListaIdiomas() {
 		ArrayList<String> idiomas = new ArrayList<>();
@@ -96,27 +92,37 @@ public class Grupo extends GrupoAbstracto {
 		return instrumentos;
 	}
 
+	public void agregarIntegrante(GrupoAbstracto g) {
+		if (!integrantes.contains(g)) {
+			integrantes.add(g);
+		}
+	}
+
+	public boolean tieneElementos() {
+		return !integrantes.isEmpty();
+	}
+
 	@Override
 	public ArrayList<GrupoAbstracto> buscar(Filtro criterio) {
 		ArrayList<GrupoAbstracto> participantesQueCumplen = new ArrayList<GrupoAbstracto>();
 		if (criterio.cumple(this)) {
-			participantesQueCumplen.add(this);
+			Grupo g = new Grupo(this.getNombre());
+			for (GrupoAbstracto i : integrantes) {
+				g.agregarIntegrante(i);
+			}
+			participantesQueCumplen.add(g);
 			return participantesQueCumplen;
 		} else {
-			for (GrupoAbstracto p: integrantes)
+			for (GrupoAbstracto p : integrantes)
 				participantesQueCumplen.addAll(p.buscar(criterio));
 		}
-		if (!participantesQueCumplen.isEmpty()) {
-			return participantesQueCumplen;
-		} else {
-			return null;
-		}
+		return participantesQueCumplen;
 	}
 
 	@Override
 	public int cantMiembrosInstrumentos(TemaMusical t) {
 		int cant = 0;
-		for (GrupoAbstracto p: integrantes) {
+		for (GrupoAbstracto p : integrantes) {
 			cant += p.cantMiembrosInstrumentos(t);
 		}
 		return cant;
