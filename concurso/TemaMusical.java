@@ -8,13 +8,23 @@ public class TemaMusical {
 	protected String titulo;
 	protected ArrayList<String> generos;
 	protected ArrayList<String> instrumentosNecesarios;
+	private String idioma;
 	protected Filtro criterio;
 
-	public TemaMusical(String titulo) {
+	public TemaMusical(String titulo, String idioma, Filtro criterio) {
 		this.titulo = titulo;
 		this.generos = new ArrayList<>();
 		this.instrumentosNecesarios = new ArrayList<>();
+		this.idioma = idioma;
+		this.criterio = criterio;
 	}
+
+	
+	
+	public String getIdioma() {
+		return idioma;
+	}
+
 
 	public String getTitulo() {
 		return titulo;

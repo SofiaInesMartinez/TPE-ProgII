@@ -1,10 +1,12 @@
 package concurso;
 
+import concurso.filtros.Filtro;
+
 public class TemaFinal extends TemaMusical {
 	private int cantidadParticipantes;
 	
-	public TemaFinal(String titulo, int cantidadParticipantes) {
-		super(titulo);
+	public TemaFinal(String titulo, String idioma, Filtro criterio, int cantidadParticipantes) {
+		super(titulo, idioma, criterio);
 		this.cantidadParticipantes = cantidadParticipantes;
 	}
 	

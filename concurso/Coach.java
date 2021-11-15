@@ -112,5 +112,13 @@ public class Coach {
 		Collections.sort(listadoMejores, criterioDescendente);
 		return listadoMejores;
 	}
+	
+	public GrupoAbstracto getMejorEquipo(Comparator<GrupoAbstracto> criterio) {
+		ArrayList<GrupoAbstracto> listadoMejores = this.getMejoresEquipo(criterio);
+		if (!listadoMejores.isEmpty()) {
+			return listadoMejores.get(0);
+		}
+		return null;
+	}
 
 }
