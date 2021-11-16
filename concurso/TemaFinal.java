@@ -10,13 +10,10 @@ public class TemaFinal extends TemaMusical {
 		this.cantidadParticipantes = cantidadParticipantes;
 	}
 	
+	// este metodo verifica si grupo/banda/solista pasado por parametro cumple con 
+	// el criterio de interpretacion del tema y si hay la cantidad de miembros 
+	// necesarios que sepan tocar los instrumentos necesarios del tema
 	public boolean puedeSerInterpretado(GrupoAbstracto p) {
-		//super.puedeSerInterpretado
-		//Criterio instrumento, con contador que si cumple con cant de participantes return true;
 		return criterio.cumple(p) && p.cantMiembrosInstrumentos(this) >= cantidadParticipantes;
-	}
-
-	public int getCantidadParticipantes() {
-		return cantidadParticipantes;
 	}
 }

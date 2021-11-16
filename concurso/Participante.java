@@ -34,17 +34,17 @@ public class Participante extends GrupoAbstracto {
 		return lista;
 	}
 
-	@Override
+	@Override //verifica si el participante habla cierto idioma
 	public boolean hablaIdioma(String idioma) {
 		return idiomas.contains(idioma);
 	}
 
-	@Override
+	@Override //verifica si el participante prefiere cierto genero
 	public boolean prefiereGenero(String genero) {
 		return generosPreferidos.contains(genero);
 	}
 
-	@Override
+	@Override //verifica si el participante toca cierto instrumento
 	public boolean tocaInstrumento(String instrumento) {
 		return instrumentos.contains(instrumento);
 	}
@@ -77,11 +77,10 @@ public class Participante extends GrupoAbstracto {
 
 	@Override
 	public int calcularIntegrantes() {
-		// TODO Auto-generated method stub
 		return 1;
 	}
 
-	@Override
+	@Override //este metodo verifica si el participante cumple con cierto criterio para agregarlo al listado buscado
 	public ArrayList<GrupoAbstracto> buscar(Filtro criterio) {
 		ArrayList<GrupoAbstracto> participante = new ArrayList<GrupoAbstracto>();
 		if (criterio.cumple(this)) {
@@ -92,7 +91,7 @@ public class Participante extends GrupoAbstracto {
 		return participante;
 	}
 
-	@Override
+	@Override //este metodo verifica la cantidad de intrumentos que toca el participante de cierto tema
 	public int cantMiembrosInstrumentos(TemaMusical t) {
 		ArrayList<String> instrumentos = t.getInstrumentosNecesarios();
 		for (String i : instrumentos) {
