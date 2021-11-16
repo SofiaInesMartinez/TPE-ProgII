@@ -13,7 +13,7 @@ public class Reality {
 		this.criterio = criterio;
 	}
 	
-	// este metodo devuelve el ganador de la batalla segun un comparador
+	// este metodo devuelve el ganador de la batalla a partir de un criterio definido pero que puede ser modificado
 	public GrupoAbstracto definirGanador(GrupoAbstracto p1, GrupoAbstracto p2) {
 		int resultado = this.criterio.compare(p1, p2);
 		if (resultado <= -1)

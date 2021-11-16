@@ -19,29 +19,21 @@ public class TemaMusical {
 		this.criterio = criterio;
 	}
 
-	
 	public String getIdioma() {
 		return idioma;
 	}
-
 
 	public Filtro getCriterio() {
 		return criterio;
 	}
 
-
-
 	public void setCriterio(Filtro criterio) {
 		this.criterio = criterio;
 	}
 
-
-
 	public void setIdioma(String idioma) {
 		this.idioma = idioma;
 	}
-
-
 
 	public String getTitulo() {
 		return titulo;
@@ -67,7 +59,7 @@ public class TemaMusical {
 		}
 	}
 
-	// este metodo verifica si grupo/banda/solista pasado por parametro 
+	// este metodo verifica si grupo/banda/solista pasado por parametro
 	// cumple con el criterio de interpretacion del tema
 	public boolean puedeSerInterpretado(GrupoAbstracto p) {
 		return criterio.cumple(p);

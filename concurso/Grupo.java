@@ -13,7 +13,7 @@ public class Grupo extends GrupoAbstracto {
 
 	}
 
-	@Override //obtiene la edad del grupo
+	@Override //obtiene la edad promedio del grupo
 	public int getEdad() {
 		int edad = 0;
 		for (GrupoAbstracto g : integrantes) {
@@ -31,7 +31,7 @@ public class Grupo extends GrupoAbstracto {
 		return cantIntegrantes;
 	}
 
-	@Override //verifica si algun integrante habla cierto idioma
+	@Override //verifica si algun integrante canta en cierto idioma
 	public boolean hablaIdioma(String idioma) {
 		return this.getListaIdiomas().contains(idioma);
 	}
@@ -46,13 +46,13 @@ public class Grupo extends GrupoAbstracto {
 		return this.getListaInstrumentos().contains(instrumento);
 	}
 
-	@Override //obtiene el listado de generos que prefieren los integrantes
-	public ArrayList<String> getListaGeneros() {
+	@Override //obtiene el listado de generos que prefieren los integrantes como la interseccion  
+	public ArrayList<String> getListaGeneros() { //de los géneros de preferencia de todos sus miembros
 		ArrayList<String> generos = new ArrayList<>();
-		if (integrantes.size() != 0) { //primero obtiene los generos que prefiere el primer integrante
+		if (integrantes.size() != 0) { //a partir de los generos que prefiere el primer integrante
 			ArrayList<String> generosPrimerParticipante = integrantes.get(0).getListaGeneros();
 			for (String g : generosPrimerParticipante) {
-				int contador = 1; //por cada genero que prefiere se verifica si los demas integrantes tambien lo prefieren
+				int contador = 1; //se verifica si los demas integrantes tambien lo prefieren
 				for (int i = 1; i < integrantes.size(); i++) {
 					ArrayList<String> generosP = integrantes.get(i).getListaGeneros();
 					if (generosP.contains(g)) //si tambien lo prefieren se aumenta el contador
@@ -66,8 +66,8 @@ public class Grupo extends GrupoAbstracto {
 		return generos;
 	}
 
-	@Override //obtiene el listado de idiomas que saben hablar los integrantes sin repetidos
-	public ArrayList<String> getListaIdiomas() {
+	@Override //obtiene el listado de idiomas que saben hablar los integrantes como la unión de los idiomas 
+	public ArrayList<String> getListaIdiomas() { //de todos sus miembros sin repetidos
 		ArrayList<String> idiomas = new ArrayList<>();
 		for (GrupoAbstracto p : integrantes) {
 			ArrayList<String> idiomasP = p.getListaIdiomas();
@@ -79,8 +79,8 @@ public class Grupo extends GrupoAbstracto {
 		return idiomas;
 	}
 
-	@Override //obtiene el listado de instrumentos que saben tocar los integrantes sin repetidos
-	public ArrayList<String> getListaInstrumentos() {
+	@Override //obtiene el listado de instrumentos que saben tocar los integrantes como la unión de los 
+	public ArrayList<String> getListaInstrumentos() {//instrumentos que tocan sus miembros sin repetidos
 		ArrayList<String> instrumentos = new ArrayList<>();
 		for (GrupoAbstracto p : integrantes) {
 			ArrayList<String> instrumentosP = p.getListaInstrumentos();
@@ -105,7 +105,7 @@ public class Grupo extends GrupoAbstracto {
 	@Override //este metodo realiza la busqueda de elementos que cumplan con cierto criterio
 	public ArrayList<GrupoAbstracto> buscar(Filtro criterio) {
 		ArrayList<GrupoAbstracto> participantesQueCumplen = new ArrayList<GrupoAbstracto>();
-		if (criterio.cumple(this)) { //si el grupo cumple, devuelve el grupo
+		if (criterio.cumple(this)) { //si el grupo cumple, devuelve una copia del grupo
 			Grupo g = new Grupo(this.getNombre());
 			for (GrupoAbstracto i : integrantes) {
 				g.agregarIntegrante(i);
@@ -119,7 +119,7 @@ public class Grupo extends GrupoAbstracto {
 		return participantesQueCumplen;
 	}
 
-	@Override //este metodo obtiene la cantidad de miembros que tocan intrumentos de cierto tema
+	@Override //este metodo obtiene la cantidad de miembros que tocan intrumentos requeridos para un tema musical
 	public int cantMiembrosInstrumentos(TemaMusical t) {
 		int cant = 0;
 		for (GrupoAbstracto p : integrantes) {

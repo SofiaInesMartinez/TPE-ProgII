@@ -107,7 +107,7 @@ public class MainConcurso {
 		t2.addGenero("Rock");
 		t2.addInstrumento("Bajo");
 		t2.addInstrumento("Guitarra");
-		System.out.println("Participantes que tocan cierto tema final (Coach 1): " + c1.buscar(new FiltroTemaMusical(t2)));
+		System.out.println("Participantes que cumplen para cierto tema final (Coach 1): " + c1.buscar(new FiltroTemaMusical(t2)));
 		
 		Filtro filtroAND5 = new FiltroAND(filtroInstrumento1, filtroGenero1);
 		Filtro filtroExigente = new FiltroAND(filtroAND1,filtroAND5);

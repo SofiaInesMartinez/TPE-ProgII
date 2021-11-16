@@ -11,8 +11,8 @@ public class TemaFinal extends TemaMusical {
 	}
 	
 	// este metodo verifica si grupo/banda/solista pasado por parametro cumple con 
-	// el criterio de interpretacion del tema y si hay la cantidad de miembros 
-	// necesarios que sepan tocar los instrumentos necesarios del tema
+	// el criterio de interpretacion del tema y si la cantidad de miembros 
+	// que saben tocar instrumentos necesarios para el tema es igual o mayor a la requerida
 	public boolean puedeSerInterpretado(GrupoAbstracto p) {
 		return criterio.cumple(p) && p.cantMiembrosInstrumentos(this) >= cantidadParticipantes;
 	}

@@ -19,22 +19,25 @@ public class Participante extends GrupoAbstracto {
 		this.instrumentos = new ArrayList<>(instrumentos);
 	}
 
+	@Override
 	public ArrayList<String> getListaInstrumentos() {
 		ArrayList<String> lista = new ArrayList<>(instrumentos);
 		return lista;
 	}
 
+	@Override
 	public ArrayList<String> getListaIdiomas() {
 		ArrayList<String> lista = new ArrayList<>(idiomas);
 		return lista;
 	}
 
+	@Override
 	public ArrayList<String> getListaGeneros() {
 		ArrayList<String> lista = new ArrayList<>(generosPreferidos);
 		return lista;
 	}
 
-	@Override //verifica si el participante habla cierto idioma
+	@Override //verifica si el participante canta en cierto idioma
 	public boolean hablaIdioma(String idioma) {
 		return idiomas.contains(idioma);
 	}
@@ -67,6 +70,7 @@ public class Participante extends GrupoAbstracto {
 		}
 	}
 
+	@Override
 	public int getEdad() {
 		return edad;
 	}
@@ -80,7 +84,7 @@ public class Participante extends GrupoAbstracto {
 		return 1;
 	}
 
-	@Override //este metodo verifica si el participante cumple con cierto criterio para agregarlo al listado buscado
+	@Override //este metodo verifica si el participante cumple con cierto criterio y lo agrega a la lista que retorna
 	public ArrayList<GrupoAbstracto> buscar(Filtro criterio) {
 		ArrayList<GrupoAbstracto> participante = new ArrayList<GrupoAbstracto>();
 		if (criterio.cumple(this)) {
@@ -91,7 +95,7 @@ public class Participante extends GrupoAbstracto {
 		return participante;
 	}
 
-	@Override //este metodo verifica la cantidad de intrumentos que toca el participante de cierto tema
+	@Override //este metodo verifica si el participante toca alguno de los instrumentos requeridos para un tema musical
 	public int cantMiembrosInstrumentos(TemaMusical t) {
 		ArrayList<String> instrumentos = t.getInstrumentosNecesarios();
 		for (String i : instrumentos) {
@@ -104,17 +108,17 @@ public class Participante extends GrupoAbstracto {
 
 	@Override
 	public int cantInstrumentos() {
-		return this.getListaInstrumentos().size();
+		return instrumentos.size();
 	}
 
 	@Override
 	public int cantGeneros() {
-		return this.getListaGeneros().size();
+		return generosPreferidos.size();
 	}
 
 	@Override
 	public int cantIdiomas() {
-		return this.getListaIdiomas().size();
+		return idiomas.size();
 	}
 
 }

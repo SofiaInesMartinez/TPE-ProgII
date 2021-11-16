@@ -40,14 +40,14 @@ public class Coach {
 		return participantesFiltrados;
 	}
 	
-	public void addParticipante(GrupoAbstracto p) {
-		if (!equipo.contains(p)) {
+	public void addParticipante(GrupoAbstracto p) { //agrega nuevos integrantes al equipo 
+		if (!equipo.contains(p)) {					//de acuerdo a un comportamiento de exigencia
 			if (comportamiento != null) {
 				if (comportamiento.cumple(p)) {
 					equipo.add(p);
 				}
 			} else
-				equipo.add(p);
+				equipo.add(p);  //si el comportamiento es null, agrega sin condiciones (solo controla que no este ya en el equipo) 
 		}
 	}
 
@@ -61,16 +61,16 @@ public class Coach {
 	
 	//este metodo devuelve el listado de instrumentos que toca el equipo sin repetidos
 	public ArrayList<String> getListaInstrumentosSinRepetir() {
-		ArrayList<String> listaInstrumentos = new ArrayList<>(); //crea lista de instrumentos
+		ArrayList<String> listaInstrumentos = new ArrayList<>(); //crea arraylist vacio
 		for (GrupoAbstracto p : equipo) {
-			ArrayList<String> listaParticipante = p.getListaInstrumentos();
+			ArrayList<String> listaParticipante = p.getListaInstrumentos(); //pide lista de instrumentos de cada integrante
 			for (String inst : listaParticipante) {
-				if (!listaInstrumentos.contains(inst)) { //si todavia no fue agregado, lo agrega
+				if (!listaInstrumentos.contains(inst)) { //si el intrumento todavia no fue agregado, lo agrega
 					listaInstrumentos.add(inst);
 				}
 			}
 		}
-		return listaInstrumentos; //devuelve la lista de instrumentos
+		return listaInstrumentos; //devuelve la lista de instrumentos como la union de los instrumentos de los integrantes
 	}
 	
 	//realiza lo mismo que el metodo de instrumentos pero con idiomas
