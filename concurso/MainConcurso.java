@@ -21,7 +21,7 @@ public class MainConcurso {
 
 	public static void main(String[] args) {
 		
-		ArrayList<String> rock = new ArrayList<String>();
+		ArrayList<String> rock = new ArrayList<String>(); //generosPreferidos1
 		rock.add("Rock");
 		rock.add("Rock alternativo");
 		ArrayList<String> idiomas1 = new ArrayList<String>();
@@ -31,7 +31,7 @@ public class MainConcurso {
 		instrumentos1.add("Guitarra");
 		instrumentos1.add("Bajo");
 		
-		ArrayList<String> cumbia = new ArrayList<String>();
+		ArrayList<String> cumbia = new ArrayList<String>(); //generosPreferidos2
 		cumbia.add("Cumbia");
 		
 		Participante p1 = new Participante("Santiago", 20, rock, idiomas1, instrumentos1);
@@ -47,12 +47,12 @@ public class MainConcurso {
 		g1.agregarIntegrante(p2);
 		g1.agregarIntegrante(p3);
 		
-		Coach c1 = new Coach("Mariel");
-		c1.addParticipante(g1);
+		Coach c1 = new Coach("Mariel"); //coach no exigente
+		c1.addParticipante(g1); //agrega todos los integrantes
 		c1.addParticipante(p7);
 		c1.addParticipante(p8);
 		
-		ArrayList<String> pop = new ArrayList<String>();
+		ArrayList<String> pop = new ArrayList<String>(); //generosPreferidos3
 		pop.add("Pop");
 		pop.add("Electropop");
 		pop.add("Synthpop");
@@ -83,9 +83,9 @@ public class MainConcurso {
 		Filtro filtroOR1 = new FiltroOR(filtroGenero2, filtroInstrumento2);
 		Filtro filtroAND4 = new FiltroAND(filtroInstrumento2, filtroOR1);
 		
-		Coach c2 = new Coach("José", filtroAND3);
-		c2.addParticipante(g2);
-		c2.addParticipante(p9);
+		Coach c2 = new Coach("José", filtroAND3); //Coach exigente
+		c2.addParticipante(g2); //pasa filtro del coach y se agrega
+		c2.addParticipante(p9); //no cumple filtro del coach, no se suma al equipo
 		
 		System.out.println("Listado instrumentos (Coach 1): " + c1.getListaInstrumentosSinRepetir());
 		System.out.println("Listado idiomas (Coach 1): " + c1.getListaIdiomasSinRepetir());
@@ -101,13 +101,13 @@ public class MainConcurso {
 		TemaMusical t1 = new TemaMusical("Dancing With Myself", "Ingles", filtroTema);
 		t1.addGenero("Rock");
 		t1.addInstrumento("Bajo");
-		System.out.println("Participantes que tocan cierto tema (Coach 1): " + c1.buscar(new FiltroTemaMusical(t1)));
+		System.out.println("Participantes que cumplen para el tema t1 (Coach 1): " + c1.buscar(new FiltroTemaMusical(t1)));
 		
 		TemaMusical t2 = new TemaFinal("Everywhere", "Ingles", filtroTema, 3);
 		t2.addGenero("Rock");
 		t2.addInstrumento("Bajo");
 		t2.addInstrumento("Guitarra");
-		System.out.println("Participantes que cumplen para cierto tema final (Coach 1): " + c1.buscar(new FiltroTemaMusical(t2)));
+		System.out.println("Participantes que cumplen para el tema final t2 (Coach 1): " + c1.buscar(new FiltroTemaMusical(t2)));
 		
 		Filtro filtroAND5 = new FiltroAND(filtroInstrumento1, filtroGenero1);
 		Filtro filtroExigente = new FiltroAND(filtroAND1,filtroAND5);
@@ -123,15 +123,17 @@ public class MainConcurso {
 		
 		Comparator<GrupoAbstracto> comparadorGenero = new ComparadorGenero();
 		Reality batalla2 = new Reality(comparadorGenero);
-		System.out.println("El ganador de la segunda batalla es: " + batalla2.definirGanador(c1.getMejorCandidato(comparadorInstrumento), c2.getMejorCandidato(comparadorInstrumento)));
+		System.out.println("El ganador de la segunda batalla es: " + batalla2.definirGanador(c1.getMejorCandidato(comparadorGenero), c2.getMejorCandidato(comparadorGenero)));
 		
 		Comparator<GrupoAbstracto> comparadorEdad = new ComparadorEdad();
-		Reality batalla3 = new Reality(new ComparadorCompuesto(comparadorInstrumento, comparadorEdad));
-		System.out.println("El ganador de la tercer batalla es: " + batalla3.definirGanador(c1.getMejorCandidato(comparadorInstrumento), c2.getMejorCandidato(comparadorInstrumento)));
+		Comparator<GrupoAbstracto> comparadorCompuesto = new ComparadorCompuesto(comparadorInstrumento, comparadorEdad);
+		Reality batalla3 = new Reality(comparadorCompuesto);
+		System.out.println("El ganador de la tercer batalla es: " + batalla3.definirGanador(c1.getMejorCandidato(comparadorCompuesto), c2.getMejorCandidato(comparadorCompuesto)));
 		
 		Comparator<GrupoAbstracto> comparadorIdioma = new ComparadorIdioma();
-		Reality batalla4 = new Reality(new ComparadorCompuesto(comparadorEdad, comparadorIdioma));
-		System.out.println("El ganador de la cuarta batalla es: " + batalla4.definirGanador(c1.getMejorCandidato(comparadorInstrumento), c2.getMejorCandidato(comparadorInstrumento)));
+		Comparator<GrupoAbstracto> comparadorCompuesto2 = new ComparadorCompuesto(comparadorEdad, comparadorIdioma);
+		Reality batalla4 = new Reality(comparadorCompuesto2);
+		System.out.println("El ganador de la cuarta batalla es: " + batalla4.definirGanador(c1.getMejorCandidato(comparadorCompuesto2), c2.getMejorCandidato(comparadorCompuesto2)));
 		
 	}
 
